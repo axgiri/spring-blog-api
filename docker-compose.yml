@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16
@@ -34,7 +32,8 @@ services:
       - "8025:8025"   # Web UI
 
   api:
-    build: .
+    build:
+      context: .
     container_name: spring_blog_api
     ports:
       - "8082:8082"
@@ -47,8 +46,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_MAIL_HOST=mailhog
       - SPRING_MAIL_PORT=1025
-      - SPRING_MAIL_USERNAME:mailuser
-      - SPRING_MAIL_PASSWORD:mailpass
+      - SPRING_MAIL_USERNAME=mailuser
+      - SPRING_MAIL_PASSWORD=mailpass
 
 networks:
   default:
